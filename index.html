@@ -1,150 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
+    <div class="container-contain" >
 
-    <div class="container" id="container">
-        <div class="input-field">
-            <div class="wrapper" id="wrapper">
-    
-                <input type="text" id="task">
-                <input type="text" id="label">
-                <button id="button">add</button>
-            </div>
-            <div class="place" id="place">
-    
+        <div class="container" id="container" >
+            <div class="input-field">
+                <div class="wrapper" id="wrapper">
+                    <input type="text" id="task" placeholder="Enter task...">
+                    <input type="text" id="label" placeholder="Priority (high/medium/low)">
+                    <button id="button">Add Task</button>
+                </div>
+                <div class="place" id="place"></div>
             </div>
         </div>
+        <div class="time-stamp cotainer" id="time-stamp">
+            <div class="label">
+                <span> Time Stamp </span>
+            </div>
+    
+        </div>
     </div>
-
-
-    <script>
-
-        const container = document.querySelector('#container');
-        const wrapper = document.querySelector('#wrapper');
-        const taskvalue = document.querySelector('#task');
-        const labelvalue = document.querySelector('#label');
-        const button = document.querySelector('#button');
-
-        const place = document.querySelector('#place');
-
-        let tasks = [];
-
-        function savetask() {
-            localStorage.setItem('todolist', JSON.stringify(tasks));
-        }
-
-        function gettask() {
-            const temp_storage = localStorage.getItem('todolist');
-            if (temp_storage) {
-                tasks = JSON.parse(temp_storage);
-            }
-        }
-
-
-        function render() {
-
-            place.innerHTML = '';
-            tasks.forEach((element, index) => {
-                const holder = document.createElement('div');
-                holder.className = 'holder';
-
-                holder.innerHTML = `
-                <div class="card">
-                    <span>${element.work}</span>
-                    <span>${element.priority}</span>
-                    <input type="checkbox" ${element.completed ? 'checked' : ''}>
-                    <button>delete</button>
-                </div>
-            `;
-
-                holder.querySelector('input').onclick = () => toggle(index);
-                holder.querySelector('button').onclick = () => deletetask(index);
-                place.appendChild(holder);
-            });
-        }
-
-        function deletetask(index) {
-            tasks.splice(index, 1);
-            savetask();
-            render();
-        }
-
-        function toggle(index) {
-            tasks[index].completed = !tasks[index].completed;
-            savetask();
-            render();
-        }
-
-        function addtask(task, label) {
-            tasks.push({
-                work: task,
-                priority: label,
-                completed: false
-            });
-            savetask();
-        }
-
-
-        button.addEventListener('click', () => {
-            const task = taskvalue.value.trim();
-            const label = labelvalue.value.trim();
-
-            if (task === '' || label === '') {
-                setTimeout(() => {
-                    alert('add task or label');
-                }, 0);
-
-                return;
-            }
-
-            addtask(task, label);
-            taskvalue.value = '';
-            labelvalue.value = '';
-            render();
-        });
-
-        wrapper.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                button.click();
-            }
-            if (e.key === 'Space') {
-                e.preventDefault();
-            }
-        });
-
-
-        const intro = document.createElement('span');
-        intro.style.color = 'green';
-
-
-        const stopBtn = document.createElement('button');
-        stopBtn.textContent = 'stop';
-        stopBtn.id = 'motivation';
-
-        intro.appendChild(stopBtn);
-        container.appendChild(intro);
-
-        const owner = setInterval(() => {
-            intro.innerHTML = 'Keep Working';
-            intro.appendChild(stopBtn);
-        }, 5000);
-
-        stopBtn.addEventListener('click', () => {
-            clearInterval(owner);
-        });
-
-        gettask();
-        render();
-    </script>
+   <script type="module" src="js/app.js"></script>
 
 </body>
-
 </html>

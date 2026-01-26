@@ -1,0 +1,210 @@
+/* style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container-contain{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.time-stamp {
+    flex: 1;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.label{
+    margin: 1rem auto;
+    font-size: 1.8rem;
+   
+    align-content: center;
+    width: 90%;
+    height: 90px;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 0 50px;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.label span{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: #5f6469;
+
+}
+.container {
+    flex: 1;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.input-field {
+    padding: 30px;
+}
+
+.wrapper {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.wrapper input[type="text"] {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.wrapper input[type="text"]:focus {
+    outline: none;
+    border-color: #4dabf7;
+    box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.2);
+}
+
+#button {
+    background-color: #4dabf7;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px;
+}
+
+#button:hover {
+    background-color: #339af0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(51, 154, 240, 0.3);
+}
+
+#button:active {
+    transform: translateY(0);
+}
+
+.place {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.holder {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.holder:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card span:first-child {
+    flex: 2;
+    font-size: 18px;
+    color: #212529;
+    min-width: 200px;
+}
+
+.card span:nth-child(2) {
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 80px;
+    text-align: center;
+}
+
+
+/* Example of different priority colors - you can customize these */
+.card span:nth-child(2)[data-priority="high"] {
+    background-color: #ffe3e3;
+    color: #c92a2a;
+}
+
+.card span:nth-child(2)[data-priority="medium"] {
+    background-color: #fff3bf;
+    color: #e67700;
+}
+
+.card span:nth-child(2)[data-priority="low"] {
+    background-color: #d3f9d8;
+    color: #2b8a3e;
+}
+
+.card input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #4dabf7;
+}
+
+.card button {
+    background-color: #fa5252;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+/* Empty state */
+.place:empty::before {
+    content: "No tasks yet. Add your first task above!";
+    text-align: center;
+    padding: 40px;
+    color: #868e96;
+    font-size: 18px;
+    display: block;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 2px dashed #dee2e6;
+}
