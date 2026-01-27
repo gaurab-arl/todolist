@@ -14,6 +14,8 @@ export function render() {
             <div class="card">
                 <span>${item.work}</span>
                 <span>${item.priority}</span>
+                                <span class="time">${formatTime(item.createdAt)}</span>
+
                 <input type="checkbox" ${item.completed ? 'checked' : ''}>
                 <button>delete</button>
             </div>
@@ -23,6 +25,17 @@ export function render() {
         holder.querySelector('button').onclick = () => deleteTask(index);
 
         place.appendChild(holder);
+    });
+}
+
+function formatTime(timestamp) {
+    const date = new Date(timestamp);
+
+    return date.toLocaleString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        day: '2-digit',
+        month: 'short'
     });
 }
 

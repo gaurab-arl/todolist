@@ -145,7 +145,7 @@ body {
     flex: 2;
     font-size: 18px;
     color: #212529;
-    min-width: 200px;
+    min-width: 150px;
 }
 
 .card span:nth-child(2) {

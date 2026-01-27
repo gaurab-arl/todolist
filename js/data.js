@@ -14,7 +14,8 @@ export function addTask(task, label) {
     tasks.push({
         work: task,
         priority: label,
-        completed: false
+        completed: false,
+        createdAt: Date.now()
     });
     saveTasks();
 }
