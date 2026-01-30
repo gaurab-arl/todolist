@@ -1,5 +1,5 @@
 // dom.js
-import { tasks, time_tasks , saveTasks } from "./data.js";
+import { tasks, time_tasks, saveTasks } from "./data.js";
 
 const place = document.querySelector('#place');
 const timeTasksContainer = document.querySelector('.time-tasks');
@@ -15,7 +15,7 @@ export function render() {
             <div class="card">
                 <span>${item.work}</span>
                 <span>${item.priority}</span>
-                                <span class="time">${formatTime(item.createdAt)}</span>
+                <span class="time">${formatTime(item.createdAt)}</span>
 
                 <input type="checkbox" ${item.completed ? 'checked' : ''}>
                 <button>delete</button>
@@ -29,20 +29,20 @@ export function render() {
     });
 
     timeTasksContainer.innerHTML = '';
-    time_tasks.forEach((item , index) => {
-         const time_holder = document.createElement('div');
-         time_holder.className = 'temp_holder';
+    time_tasks.forEach((item, index) => {
+        const time_holder = document.createElement('div');
+        time_holder.className = 'holder time_holder';
 
-         time_holder.innerHTML = `
-         <div class = "card">
-            <span> ${time_tasks.shedule} </span>
-            <span> ${time_tasks.purpose} </span>
-            <span> ${time_tasks.created} </span>
+        time_holder.innerHTML = `
+         <div class ="card">
+            <span> ${item.shedule} </span>
+            <span> ${item.label} </span>
+            <span class="time"> ${formatTime(item.created)} </span>
             <button id='shedule-delete'> Delete </button>
         </div>
          `;
-         time_holder.querySelector('#shedule-delete').onclick = () => deleteTask(index);
-         timeTasksContainer.append(time_holder);
+        time_holder.querySelector('#shedule-delete').onclick = () => deleteTimeTask(index);
+        timeTasksContainer.append(time_holder);
     });
 }
 
@@ -59,6 +59,12 @@ function formatTime(timestamp) {
 
 function deleteTask(index) {
     tasks.splice(index, 1);
+    saveTasks();
+    render();
+}
+
+function deleteTimeTask(index) {
+    time_tasks.splice(index, 1);
     saveTasks();
     render();
 }

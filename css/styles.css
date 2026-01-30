@@ -12,19 +12,19 @@ body {
     padding: 20px;
 }
 
-.container-contain{
+.container-contain {
     display: flex;
-    flex-direction: row;
     gap: 1rem;
+    align-items: flex-start; /* 🔑 STOP HEIGHT STRETCHING */
 }
 
+.container,
 .time-stamp {
-    flex: 1;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-
+    max-height: 90vh;
+    overflow-y: auto;
 }
+
+
 
 .label{
     margin: 1rem auto;
@@ -51,15 +51,32 @@ body {
 
 }
 .container {
+        display: flex;
+    align-items: flex-start;
+
     flex: 1;
     background-color: white;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+   
+    overflow-y: auto;
 }
 
 .input-field {
     padding: 30px;
+}
+
+.time-stamp {
+
+
+    flex: 1;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+   padding-left: 30px;
+   padding-bottom: 30px;
+   padding-right: 30px;
+    padding-top: 10px;
 }
 
 .wrapper {
@@ -118,6 +135,16 @@ body {
     flex-direction: column;
     gap: 15px;
 }
+
+
+
+.time-tasks {
+    display: flex;
+    flex-direction: column; /* 🔑 */
+    gap: 1rem;
+}
+
+
 
 .holder {
     background: white;
@@ -197,7 +224,8 @@ body {
 
 
 /* Empty state */
-.place:empty::before {
+.place:empty::before,
+.time-tasks:empty::before {
     content: "No tasks yet. Add your first task above!";
     text-align: center;
     padding: 40px;
@@ -207,4 +235,8 @@ body {
     background: #f8f9fa;
     border-radius: 10px;
     border: 2px dashed #dee2e6;
+   
 }
+
+
+

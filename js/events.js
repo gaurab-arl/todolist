@@ -16,12 +16,22 @@ export function setupEvents() {
             // Add visual feedback
             if (!task) taskInput.style.borderColor = 'red';
             if (!label) labelInput.style.borderColor = 'red';
+           
             setTimeout(() => {
                 taskInput.style.borderColor = '';
                 labelInput.style.borderColor = '';
             }, 2000);
             return;
         }
+         if (task != 'high' || task != 'medium' || task != 'low') {
+                labelInput.style.borderColor = "red";
+                setTimeout(() => {
+                    labelInput.style.borderColor = '';
+
+                }, 2000);
+                labelInput.value = '';
+               
+            }
 
         addTask(task, label);
         taskInput.value = '';
