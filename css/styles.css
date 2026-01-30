@@ -23,7 +23,7 @@ body {
     background-color: white;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+
 }
 
 .label{
@@ -32,7 +32,7 @@ body {
    
     align-content: center;
     width: 90%;
-    height: 90px;
+    min-height: 90px;
     gap: 10px;
     margin-bottom: 30px;
     flex-wrap: wrap;

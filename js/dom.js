@@ -1,7 +1,8 @@
 // dom.js
-import { tasks, saveTasks } from "./data.js";
+import { tasks, time_tasks , saveTasks } from "./data.js";
 
 const place = document.querySelector('#place');
+const timeTasksContainer = document.querySelector('.time-tasks');
 
 export function render() {
     place.innerHTML = '';
@@ -25,6 +26,23 @@ export function render() {
         holder.querySelector('button').onclick = () => deleteTask(index);
 
         place.appendChild(holder);
+    });
+
+    timeTasksContainer.innerHTML = '';
+    time_tasks.forEach((item , index) => {
+         const time_holder = document.createElement('div');
+         time_holder.className = 'temp_holder';
+
+         time_holder.innerHTML = `
+         <div class = "card">
+            <span> ${time_tasks.shedule} </span>
+            <span> ${time_tasks.purpose} </span>
+            <span> ${time_tasks.created} </span>
+            <button id='shedule-delete'> Delete </button>
+        </div>
+         `;
+         time_holder.querySelector('#shedule-delete').onclick = () => deleteTask(index);
+         timeTasksContainer.append(time_holder);
     });
 }
 
@@ -50,3 +68,4 @@ function toggle(index) {
     saveTasks();
     render();
 }
+
