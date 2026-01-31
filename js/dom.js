@@ -46,10 +46,12 @@ export function render() {
     });
 }
 
+
 function formatTime(timestamp) {
     const date = new Date(timestamp);
 
     return date.toLocaleString('en-US', {
+        
         hour: '2-digit',
         minute: '2-digit',
         day: '2-digit',
