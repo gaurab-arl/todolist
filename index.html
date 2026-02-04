@@ -1,39 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task Manager</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" href="favicon.ico">
-
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" href="favicon.ico" />
 </head>
-<body>
-    <div class="container-contain" >
 
-        <div class="container" id="container" >
-            <div class="input-field">
-                <div class="wrapper" id="wrapper">
-                    <input type="text" id="task" placeholder="Enter task...">
-                    <input type="text" id="label" placeholder="Priority (high/medium/low)">
-                    <button id="button">Add Task</button>
-                </div>
-                <button>HIGH</button>
-                <button>MEDIUM</button>
-                <button>LOW</button>
-                <div class="place" id="place"></div>
-            </div>
-        </div>
-        <div class="time-stamp " id="time-stamp">
-            <div class="label wrapper ">
-                <input type="text" id="time" placeholder="Enter time table" >
-                <input type="text" id="purpose" placeholder="Enter the purpose">
-                <button class="time-button" id="button">Add</button>
-            </div>
-            <div class="time-tasks"></div>
-        </div>
-    </div>
-   <script type="module" src="js/app.js"></script>
+<body class="body">
 
+    <header class="app-header">
+        <div class="header-main">
+            <div class="title-row">
+                <h1>Daily Planner</h1>
+            </div>
+            <p>Plan tasks. Assign time. Stay productive.</p>
+        </div>
+        <div id="motivation-container">
+            <span id="motivation-message">Keep Working</span>
+            <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        </div>
+    </header>
+
+    <main class="container-contain">
+
+        <!-- TASK SECTION -->
+        <section class="container" id="task-section">
+            <h2>Tasks</h2>
+
+            <div class="input-field" id="input-field">
+                <input type="text" id="taskInput" placeholder="Enter task..." />
+
+                <select id="priorityInput">
+                    <option value="">Select priority</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+
+                <button id="addTaskBtn">Add Task</button>
+            </div>
+
+            <div class="filter-buttons">
+                <button data-filter="all">All</button>
+                <button data-filter="high">High</button>
+                <button data-filter="medium">Medium</button>
+                <button data-filter="low">Low</button>
+            </div>
+
+            <div class="task-list" id="taskList">
+                <p class="empty">No tasks yet. Add your first task 👆</p>
+            </div>
+        </section>
+
+        <!-- TIMETABLE SECTION -->
+        <section class="time-stamp" id="time-section">
+            <h2>Timetable</h2>
+
+            <div class="wrapper">
+                <input type="time" id="timeInput" />
+                <input type="time" id="timeInputsecond" />
+                <input type="text" id="purposeInput" placeholder="Purpose" />
+                <button id="addTimeBtn">Add</button>
+            </div>
+
+            <div class="time-tasks" id="timeList">
+                <p class="empty">No timetable entries yet.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script type="module" src="js/app.js"></script>
 </body>
+
 </html>

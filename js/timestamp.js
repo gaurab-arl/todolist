@@ -1,34 +1,39 @@
-import { addTimeTasks , loadTasks } from "./data.js";
+import { addTimeTasks, loadTasks } from "./data.js";
 import { render } from "./dom.js";
 import { setupEvents } from "./events.js";
 
-const taskInput = document.querySelector('#time');
-const purposeInput = document.querySelector('#purpose');
-const timebutton = document.querySelector('.time-button');
-const time_wrapper = document.querySelector('.label');
+const time = document.querySelector('#timeInput');
+const timesecond = document.querySelector('#timeInputsecond');
+const purposeInput = document.querySelector('#purposeInput');
+const timebutton = document.querySelector('#addTimeBtn');
+const time_wrapper = document.querySelector('.wrapper');
 
 export function setup_time_events() {
 
     timebutton.addEventListener('click', () => {
-        const timetask = taskInput.value.trim();
+        const timetask = time.value;
+        const timetasksecond = timesecond.value;
         const purpose = purposeInput.value.trim();
 
-        if (!timetask || !purpose) {
+        if (!timetask || !purpose || !timetasksecond) {
             // Add visual feedback
-            if (!timetask) taskInput.style.borderColor = 'red';
+            if (!timetask) time.style.borderColor = 'red';
             if (!purpose) purposeInput.style.borderColor = 'red';
+            if (!timetasksecond) timesecond.style.borderColor = 'red';
             setTimeout(() => {
-                taskInput.style.borderColor = '';
+                time.style.borderColor = '';
                 purposeInput.style.borderColor = '';
+                timesecond.style.borderColor = '';
             }, 2000);
             return;
         }
 
-        addTimeTasks(timetask , purpose);
-       
+        addTimeTasks(timetask, timetasksecond, purpose);
+
         // Clear inputs
-        taskInput.value = '';
+        time.value = '';
         purposeInput.value = '';
+        timesecond.value = '';
         render();
     });
 }

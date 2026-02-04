@@ -1,242 +1,327 @@
-/* style.css */
+:root {
+    --bg-color: #e9eef6;
+    --text-color: #222;
+    --card-bg: #fff;
+    --header-p: #666;
+    --accent-color: #4a90e2;
+    --accent-hover: #357abd;
+    --border-color: #ccc;
+    --empty-text: #888;
+    --secondary-bg: #f1f4f9;
+    --secondary-text: #333;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --input-bg: #fff;
+    --task-card-bg: #f8faff;
+    --high-priority-bg: #fff5f5;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a2e;
+    --text-color: #e0e0e0;
+    --card-bg: #16213e;
+    --header-p: #a0a0a0;
+    --accent-color: #4db3ff;
+    --accent-hover: #357abd;
+    --border-color: #30475e;
+    --empty-text: #a0a0a0;
+    --secondary-bg: #0f3460;
+    --secondary-text: #e0e0e0;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --input-bg: #1b1b2f;
+    --task-card-bg: #1b1b2f;
+    --high-priority-bg: #2d1b1b;
+}
+
+/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: var(--bg-color);
     min-height: 100vh;
-    padding: 20px;
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
 }
 
-.container-contain {
+/* HEADER */
+.app-header {
     display: flex;
-    gap: 1rem;
-    align-items: flex-start; /* 🔑 STOP HEIGHT STRETCHING */
-}
-
-.container,
-.time-stamp {
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-
-
-.label{
-    margin: 1rem auto;
-    font-size: 1.8rem;
-   
-    align-content: center;
-    width: 90%;
-    min-height: 90px;
-    gap: 10px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
-    background: #f8f9fa;
-    padding: 0 50px;
-    border-radius: 10px;
-    border: 1px solid #e9ecef;
+    padding: 1.5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.label span{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   color: #5f6469;
-
-}
-.container {
-        display: flex;
-    align-items: flex-start;
-
-    flex: 1;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-   
-    overflow-y: auto;
+.header-main {
+    text-align: left;
 }
 
-.input-field {
-    padding: 30px;
+.app-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.1rem;
 }
 
-.time-stamp {
-
-
-    flex: 1;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-   padding-left: 30px;
-   padding-bottom: 30px;
-   padding-right: 30px;
-    padding-top: 10px;
+.app-header p {
+    color: var(--header-p);
+    font-size: 0.95rem;
 }
 
+.title-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+    width: auto;
+}
+
+#theme-toggle:hover {
+    background: var(--secondary-bg);
+}
+
+#motivation-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.8rem 1.2rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid green;
+}
+
+#motivation-message {
+    color: green;
+}
+
+
+/* MAIN CONTAINER */
+.container-contain {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+/* CARDS */
+section {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 1.2rem;
+    box-shadow: var(--box-shadow);
+}
+
+section h2 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+/* INPUT AREA */
+.input-field,
 .wrapper {
     display: flex;
-    gap: 10px;
-    margin-bottom: 30px;
+    gap: 0.6rem;
     flex-wrap: wrap;
-    align-items: center;
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #e9ecef;
+    margin-bottom: 1rem;
 }
 
-.wrapper input[type="text"] {
+input,
+select {
     flex: 1;
-    padding: 12px 15px;
-    border: 2px solid #dee2e6;
+    padding: 0.6rem 0.7rem;
     border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    min-width: 150px;
-}
-
-.wrapper input[type="text"]:focus {
+    border: 1px solid var(--border-color);
+    background: var(--input-bg);
+    color: var(--text-color);
     outline: none;
-    border-color: #4dabf7;
-    box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.2);
 }
 
-#button {
-    background-color: #4dabf7;
-    color: white;
+input:focus,
+select:focus {
+    border-color: #4a90e2;
+}
+
+/* BUTTONS */
+button {
+    padding: 0.6rem 1rem;
     border: none;
-    padding: 12px 25px;
     border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
+    background: var(--accent-color);
+    color: white;
     cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 100px;
+    transition: 0.2s ease;
 }
 
-#button:hover {
-    background-color: #339af0;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(51, 154, 240, 0.3);
+button:hover {
+    background: #357abd;
 }
 
-#button:active {
-    transform: translateY(0);
+/* FILTER BUTTONS */
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
-.place {
+.filter-buttons button {
+    background: var(--secondary-bg);
+    color: var(--secondary-text);
+}
+
+.filter-buttons button:hover {
+    background: #dce6f5;
+}
+
+/* TASK LIST */
+.task-list,
+.time-tasks {
+    min-height: 180px;
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 1rem;
+
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.2rem;
 }
 
-
-
-.time-tasks {
-    display: flex;
-    flex-direction: column; /* 🔑 */
-    gap: 1rem;
-}
-
-
-
-.holder {
-    background: white;
+.task-card {
+    background: var(--task-card-bg);
     border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    border: 1px solid #e9ecef;
+    padding: 0.7rem;
+    margin-bottom: 0.6rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.holder:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+/* PRIORITY COLORS */
+
+
+/* Target the card inside the high priority holder */
+.holder.high .card {
+    border-left: 5px solid #e74c3c;
+    background-color: var(--high-priority-bg);
+    /* Optional: make it stand out more */
+}
+
+.holder.medium .card {
+    border-left: 5px solid #f1c40f;
+}
+
+.holder.low .card {
+    border-left: 5px solid #2ecc71;
 }
 
 .card {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    gap: 20px;
-    flex-wrap: wrap;
+    padding: 0 1rem;
+    margin-bottom: 0.5rem;
+    /* Added margin for spacing */
 }
 
-.card span:first-child {
-    flex: 2;
-    font-size: 18px;
-    color: #212529;
-    min-width: 150px;
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    width: 100%;
+    /* Ensure it takes the full width of the container */
 }
 
-.card span:nth-child(2) {
-    padding: 6px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    min-width: 80px;
+.card.task {
+    display: flex;
+    gap: 10px;
+    /* Adjust this value as needed */
+    align-items: center;
+    /* Keeps items vertically aligned */
+}
+
+/* EMPTY STATE */
+.empty {
+    color: var(--empty-text);
     text-align: center;
+    font-size: 0.9rem;
 }
 
+/* RESPONSIVE BREAKPOINTS */
 
-/* Example of different priority colors - you can customize these */
-.card span:nth-child(2)[data-priority="high"] {
-    background-color: #ffe3e3;
-    color: #c92a2a;
+/* Tablets */
+@media (max-width: 1024px) {
+    .container-contain {
+        grid-template-columns: 1fr;
+    }
 }
 
-.card span:nth-child(2)[data-priority="medium"] {
-    background-color: #fff3bf;
-    color: #e67700;
+/* Phones */
+@media (max-width: 480px) {
+    .app-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .header-main {
+        text-align: center;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    input,
+    select {
+        width: 100%;
+    }
+
+    .task,
+    .card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+    }
+
+    .time_holder .card {
+        background-color: var(--task-card-bg);
+        padding: 1rem;
+    }
+
+    .card-info {
+        display: flex;
+        width: 100%;
+        gap: 9.5rem;
+    }
+
+    .card-info:nth-last-child() {
+        position: absolute;
+    }
+
+    .card-time {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 4rem;
+    }
+
+
 }
-
-.card span:nth-child(2)[data-priority="low"] {
-    background-color: #d3f9d8;
-    color: #2b8a3e;
-}
-
-.card input[type="checkbox"] {
-    width: 22px;
-    height: 22px;
-    cursor: pointer;
-    accent-color: #4dabf7;
-}
-
-.card button {
-    background-color: #fa5252;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-
-/* Empty state */
-.place:empty::before,
-.time-tasks:empty::before {
-    content: "No tasks yet. Add your first task above!";
-    text-align: center;
-    padding: 40px;
-    color: #868e96;
-    font-size: 18px;
-    display: block;
-    background: #f8f9fa;
-    border-radius: 10px;
-    border: 2px dashed #dee2e6;
-   
-}
-
-
-

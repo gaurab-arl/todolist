@@ -1,16 +1,25 @@
 // events.js
-import { addTask } from "./data.js";
+import { addTask, tasks } from "./data.js";
 import { render } from "./dom.js";
 
-const wrapper = document.querySelector('#wrapper');
-const taskInput = document.querySelector('#task');
-const labelInput = document.querySelector('#label');
-const button = document.querySelector('#button');
+console.log('event');
+const wrapper = document.querySelector('#input-field');
+
+const taskInput = document.querySelector('#taskInput');
+const labelInput = document.querySelector('#priorityInput');
+
+const button = document.querySelector('#addTaskBtn');
+
+const taskList = document.getElementById("taskList");
+
+const categorybutton = document.querySelector('.filter-buttons');
 
 export function setupEvents() {
     button.addEventListener('click', () => {
         const task = taskInput.value.trim();
-        const label = labelInput.value.trim();
+        
+        const label = labelInput.value;
+
 
         if (!task || !label) {
             // Add visual feedback
@@ -23,20 +32,12 @@ export function setupEvents() {
             }, 2000);
             return;
         }
-         if (task != 'high' || task != 'medium' || task != 'low') {
-                labelInput.style.borderColor = "red";
-                setTimeout(() => {
-                    labelInput.style.borderColor = '';
-
-                }, 2000);
-                labelInput.value = '';
-               
-            }
+        
 
         addTask(task, label);
         taskInput.value = '';
         labelInput.value = '';
-        render();
+        render(tasks);
     });
 
     wrapper.addEventListener('keydown', (e) => {
@@ -46,3 +47,30 @@ export function setupEvents() {
         }
     });
 }
+
+export function category() {
+    categorybutton.addEventListener('click' , (e) => {
+        const filter = e.target.dataset.filter;
+        if(filter === 'all')
+        {
+            render(tasks);
+        }
+        if(filter === 'high')
+        {
+            const temp = tasks.filter( t => t.priority == 'high');
+           
+            render(temp);
+        }
+        if(filter === 'medium')
+        {
+            const temp = tasks.filter( t => t.priority == 'medium');
+            render(temp);
+        }
+        if(filter === 'low')
+        {
+            const temp = tasks.filter( t => t.priority == 'low');
+            render(temp);
+        }
+    });
+
+};

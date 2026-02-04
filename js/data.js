@@ -1,4 +1,6 @@
 // data.js
+
+
 export let tasks = [];
 export let time_tasks = [];
 
@@ -28,9 +30,10 @@ export function addTask(task, label) {
   
 }
 
-export function addTimeTasks(task , purpose) {
+export function addTimeTasks(timefirst , timesecond , purpose) {
       time_tasks.push({
-        shedule: task,
+        shedule: timefirst,
+        shedulesecond : timesecond,
         label: purpose,
         created : Date.now()
     });
