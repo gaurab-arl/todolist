@@ -9,67 +9,67 @@ const timelist = document.querySelector('#timeList');
 
 
 export function render(tasksArray = tasks) {
+    if (tasksArray.length === 0) {
+        tasklist.innerHTML = '<p class="empty">No tasks yet. Add your first task 👆</p>';
+    } else {
+        tasklist.innerHTML = '';
+        tasksArray.forEach((item, index) => {
+            const holder = document.createElement('div');
+            holder.className = 'holder';
 
-    tasklist.innerHTML = '';
-    
-    tasksArray.forEach((item, index) => {
-        const holder = document.createElement('div');
-        holder.className = 'holder';
-
-        holder.innerHTML = `
-            <div class="card task">
-                <div class='card-info'>
-                <span>${item.work}</span>
-                <span>${item.priority}</span>
-               </div> 
-               <div class='card-time'>
-                <span class="time">${formatTime(item.createdAt)}</span>
-                
-                <input type="checkbox" ${item.completed ? 'checked' : ''}>
+            holder.innerHTML = `
+                <div class="card task">
+                    <div class='card-info'>
+                    <span>${item.work}</span>
+                    <span>${item.priority}</span>
+                   </div> 
+                   <div class='card-time'>
+                    <span class="time">${formatTime(item.createdAt)}</span>
+                    
+                    <input type="checkbox" ${item.completed ? 'checked' : ''}>
+                    </div>
+                    <button>delete</button>
                 </div>
-                <button>delete</button>
+            `;
+
+            if (item.priority.toLowerCase() === 'high') {
+                holder.classList.add('high');
+            } else if (item.priority.toLowerCase() === 'medium') {
+                holder.classList.add('medium');
+            } else if (item.priority.toLowerCase() === 'low') {
+                holder.classList.add('low');
+            }
+
+            holder.querySelector('input').onclick = () => toggle(index);
+            holder.querySelector('button').onclick = () => deleteTask(index);
+
+            tasklist.appendChild(holder);
+        });
+    }
+
+    if (time_tasks.length === 0) {
+        timelist.innerHTML = '<p class="empty">No timetable entries yet.</p>';
+    } else {
+        timelist.innerHTML = '';
+        time_tasks.forEach((item, index) => {
+            const time_holder = document.createElement('div');
+            time_holder.className = 'holder time_holder';
+
+            time_holder.innerHTML = `
+             <div class ="card">
+                <div class="time-info">
+                <span> ${item.shedule} - ${item.shedulesecond} </span>
+                <span> ${item.label} </span>
+                </div>
+                <span class="time"> ${formatTime(item.created)} </span>
+                
+                <button class='shedule-delete'> Delete </button>
             </div>
-        `;
-
-        // In dom.js, update the condition:
-        if (item.priority.toLowerCase() === 'high') {
-            holder.classList.add('high');
-        }
-
-        if (item.priority.toLowerCase() === 'medium') {
-            holder.classList.add('medium');
-        }
-        if (item.priority.toLowerCase() === 'low') {
-            holder.classList.add('low');
-        }
-
-        holder.querySelector('input').onclick = () => toggle(index);
-        holder.querySelector('button').onclick = () => deleteTask(index);
-
-        tasklist.appendChild(holder);
-    });
-
-    timelist.innerHTML = '';
-    
-    emptymessage();
-    time_tasks.forEach((item, index) => {
-        const time_holder = document.createElement('div');
-        time_holder.className = 'holder time_holder';
-
-        time_holder.innerHTML = `
-         <div class ="card">
-            <div class="time-info">
-            <span> ${item.shedule} - ${item.shedulesecond} </span>
-            <span> ${item.label} </span>
-            </div>
-            <span class="time"> ${formatTime(item.created)} </span>
-            
-            <button class='shedule-delete'> Delete </button>
-        </div>
-         `;
-        time_holder.querySelector('.shedule-delete').onclick = () => deleteTimeTask(index);
-        timelist.append(time_holder);
-    });
+             `;
+            time_holder.querySelector('.shedule-delete').onclick = () => deleteTimeTask(index);
+            timelist.append(time_holder);
+        });
+    }
 }
 
 
