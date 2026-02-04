@@ -6,9 +6,12 @@ console.log('dom');
 const tasklist = document.querySelector('#taskList');
 const timelist = document.querySelector('#timeList');
 
-export function render(tasksArray = tasks) {
-    tasklist.innerHTML = '';
 
+
+export function render(tasksArray = tasks) {
+
+    tasklist.innerHTML = '';
+    
     tasksArray.forEach((item, index) => {
         const holder = document.createElement('div');
         holder.className = 'holder';
@@ -46,8 +49,9 @@ export function render(tasksArray = tasks) {
         tasklist.appendChild(holder);
     });
 
-
     timelist.innerHTML = '';
+    
+    emptymessage();
     time_tasks.forEach((item, index) => {
         const time_holder = document.createElement('div');
         time_holder.className = 'holder time_holder';

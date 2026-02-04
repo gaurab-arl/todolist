@@ -10,7 +10,7 @@ const labelInput = document.querySelector('#priorityInput');
 
 const button = document.querySelector('#addTaskBtn');
 
-const taskList = document.getElementById("taskList");
+
 
 const categorybutton = document.querySelector('.filter-buttons');
 
