@@ -118,6 +118,23 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
+
+    display: flex;
+    align-items: start;
+}
+
+.container{
+    flex: 1;
+    max-height: 450px;
+    overflow-y: auto;
+    
+}
+
+.time-stamp {
+    flex: 1;
+    max-height: 450px;
+    overflow-y: auto;
+    min-height: 370px;
 }
 
 /* CARDS */
@@ -200,6 +217,11 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
+}
+
+.time-task-container{
+    min-height: 235px;
+    max-height: 235px;
 }
 
 .task-card {
