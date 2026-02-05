@@ -115,19 +115,16 @@ body {
     max-width: 1200px;
     margin: auto;
     padding: 1rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-
     display: flex;
+    gap: 1.5rem;
     align-items: start;
 }
 
-.container{
+.container {
     flex: 1;
     max-height: 450px;
     overflow-y: auto;
-    
+
 }
 
 .time-stamp {
@@ -219,7 +216,7 @@ button:hover {
     gap: 0.2rem;
 }
 
-.time-task-container{
+.time-task-container {
     min-height: 235px;
     max-height: 235px;
 }
@@ -291,7 +288,13 @@ button:hover {
 /* Tablets */
 @media (max-width: 1024px) {
     .container-contain {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+
+    .container,
+    .time-stamp {
+        width: 100%;
+        flex: none;
     }
 }
 
@@ -301,6 +304,10 @@ button:hover {
         flex-direction: column;
         text-align: center;
         gap: 1rem;
+    }
+
+    .container-contain {
+        padding: 0.5rem;
     }
 
     .header-main {
