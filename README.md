@@ -49,5 +49,10 @@ Open `index.html` in your browser — no build step, no dependencies.
 ---
 
 ## License
+This project is open source and available for personal and commercial use.
 
-MIT
+---
+
+## Author
+Gaurab Aryal - GitHub
+
